@@ -1,0 +1,6 @@
+gradio
+chromadb
+sentence-transformers
+PyMuPDF
+ollama
+langchain
