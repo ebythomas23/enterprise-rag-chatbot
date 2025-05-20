@@ -9,4 +9,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application code into the container
 COPY app/ .
 
-CMD [ "python","ui_gradio.py" ]
+CMD [ "python","main.py" ]
