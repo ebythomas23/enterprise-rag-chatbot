@@ -27,3 +27,7 @@ def query_chunks(query, top_k=3):
     #search for similar chunks in the collection
     results = collection.query(query_embeddings=[query_embedding], n_results=top_k)
     return results['documents'][0]  #return the top k similar chunks
+
+
+#Uses SentenceTransformer to convert text chunks and queries into vectors
+#Uses ChromaDB to store vectors and perform fast similarity search
