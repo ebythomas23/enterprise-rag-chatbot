@@ -11,7 +11,7 @@ collection = client.get_or_create_collection("enterprise_docs")
 
 def index_chunks(chunks):
     #embed and store documents chunks in chromaDB
-    embeddings= model.encode(chunks).tolists()
+    embeddings= model.encode(chunks).tolist()
     ids =[f"doc_{i}" for i in range(len(chunks))] #create unique ids for each chunk
     collection.add(documents= chunks, embeddings=embeddings,  ids=ids) #store chunks in the collection
 
