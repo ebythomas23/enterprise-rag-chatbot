@@ -6,13 +6,8 @@ from chromadb.config import Settings
 model =SentenceTransformer('all-MiniLM-L6-v2')
 
 #Initialize ChromoDB client 
-client = chromadb.Client(Settings(  
-    chroma_db_impl="duckdb+parquet",    #use DuckDB with Parquet for storage
-    persist_directory="./chroma_store" #path to store the database
-))
-
-collection = client.get_or_create_collection(name="enterprise_docs") #create or get a collection for storing documents
-
+client = chromadb.PersistentClient(path="./chroma_store")
+collection = client.get_or_create_collection("enterprise_docs")
 
 def index_chunks(chunks):
     #embed and store documents chunks in chromaDB

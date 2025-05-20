@@ -12,7 +12,7 @@ def query_ollama(query,context, model_name="llama3.2:1b"):
   #send the prompt to the LLM and get the response
   try:
     response= ollama.chat(model=model_name,
-                          message=[{"role":"user","content":prompt}])
+                          messages=[{"role":"user","content":prompt}])
     return response['message']['content']
   except Exception as e:
     return f"Error:{str(e)}"
