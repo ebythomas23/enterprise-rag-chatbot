@@ -1,49 +1,54 @@
 import gradio as gr
-from rag_pipeline import extract_text_from_pdf,chunk_text
-from vector_store import index_chunks,query_chunks
+from rag_pipeline import extract_text_from_pdf, chunk_text
+from vector_store import index_chunks, query_chunks
 from ollama_integration import query_ollama
 
-#Track whether a document has been processed
+# Tracks if a document was uploaded and indexed
 document_loaded = False
 
-#parses and chunks the PDF, indexes chunks to ChromaDB
 def handle_upload(file):
     global document_loaded
     try:
-        #extract text from the PDF
         text = extract_text_from_pdf(file.name)
-        #chunk the text into smaller pieces
         chunks = chunk_text(text)
-        #index the chunks to ChromaDB
         index_chunks(chunks)
         document_loaded = True
-        return "Document uploaded and processed successfully. You can now ask Questions"
+        return "Document uploaded and processed successfully. You can now ask questions."
     except Exception as e:
+        print("[Upload Error]", str(e))
         return f"Error processing document: {str(e)}"
-    
-def chat_with_bot(message, history):
+
+def respond(message, chat_history):
+    global document_loaded
+
     if not document_loaded:
-        return "Please upload a document first.", history
+        chat_history.append(("You: " + message, "Please upload a document first."))
+        return "", chat_history
+
     try:
-        retrived_chunks = query_chunks(message)
-        context ="\n".join(retrived_chunks)  
-        response= query_ollama(message,context)
-        history.append((message, response))
-        return "", history
+        retrieved_chunks = query_chunks(message)
+        context = "\n".join(retrieved_chunks)
+        response = query_ollama(message, context)
+        chat_history.append(("You: " + message, response))
     except Exception as e:
-        return f"Error: {str(e)}", history
-    
-#create the Gradio interface
-demo = gr.Blocks()
+        chat_history.append(("You: " + message, f"Error: {str(e)}"))
 
-with demo:
-    gr.Markdown("##Enterprise RAG Chatbot")
- 
+    return "", chat_history
+
+# Build Gradio Blocks UI manually
+with gr.Blocks() as demo:
+    gr.Markdown("## Enterprise RAG Chatbot")
+
     with gr.Row():
-        file_upload =gr.File(label="Upload PDF Document", file_types=[".pdf"])
+        file_upload = gr.File(label="Upload PDF Document", file_types=[".pdf"])
         upload_status = gr.Textbox(label="Upload Status", interactive=False)
-
 
     file_upload.change(fn=handle_upload, inputs=file_upload, outputs=upload_status)
 
-    gr.ChatInterface(fn=chat_with_bot, chatbot=True)
+    chatbot = gr.Chatbot(label="Chat History")
+    user_input = gr.Textbox(placeholder="Ask a question about the uploaded document...", label="Your Question")
+    state = gr.State([])
+
+    send_btn = gr.Button("Send")
+
+    send_btn.click(fn=respond, inputs=[user_input, state], outputs=[user_input, chatbot])
