@@ -39,6 +39,24 @@ A local document-based chatbot that uses Retrieval-Augmented Generation (RAG) to
 ---
 
 ## Project Structure
+| Path                           | Description                                                                     |
+| ------------------------------ | ------------------------------------------------------------------------------- |
+| `app/`                         | Main application folder containing all Python source files                      |
+| `app/main.py`                  | Entrypoint to launch the Gradio web application                                 |
+| `app/ui_gradio.py`             | Defines the Gradio Blocks UI and user interaction logic                         |
+| `app/ollama_integration.py`    | Constructs prompts and communicates with the Ollama LLM via Python SDK          |
+| `app/rag_pipeline.py`          | Handles text extraction from PDFs using PyMuPDF and creates text chunks         |
+| `app/vector_store.py`          | Converts chunks to embeddings and handles vector search via ChromaDB            |
+| `app/docs/`                    | Mounted folder inside Docker for uploaded PDFs                                  |
+| `app/docs/Leave-Policy.pdf`    | Sample PDF document used for demo and testing                                   |
+| `images/`                      | Folder containing screenshots and architecture diagram for the README           |
+| `images/Before_uploading.png`  | Screenshot showing the UI before uploading a PDF                                |
+| `images/Chat_bot_Response.png` | Screenshot showing an LLM-generated response after querying a PDF               |
+| `images/workflow.png`          | Visual diagram showing how RAG and components are connected                     |
+| `Dockerfile`                   | Defines the environment and steps to build and run the app in Docker            |
+| `README.md`                    | Project documentation including setup, architecture, and usage instructions     |
+| `requirements.txt`             | List of required Python libraries such as `gradio`, `chromadb`, `PyMuPDF`, etc. |
+
 .
 ├── app/
 │   ├── main.py                  # Entrypoint to launch the Gradio app
