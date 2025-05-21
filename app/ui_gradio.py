@@ -18,6 +18,10 @@ def handle_upload(file):
         print("[Upload Error]", str(e))
         return f"Error processing document: {str(e)}"
 
+# Respond to user input
+# This function retrieves relevant chunks from the vector store and queries the LLM.
+# with the user question and the retrieved context,
+# It returns the response from the LLM and updates the chat history.
 def respond(message, chat_history):
     global document_loaded
 
