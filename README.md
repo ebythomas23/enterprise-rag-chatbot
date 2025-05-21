@@ -18,14 +18,15 @@ A local document-based chatbot that uses Retrieval-Augmented Generation (RAG) to
 
 ## Tech Stack
 
-| Component         | Description                             |
-|------------------|-----------------------------------------|
-| Python           | Core logic and backend pipeline         |
-| Gradio           | Interactive user interface              |
-| ChromaDB         | Vector store for semantic search        |
-| Ollama           | Local LLM runtime (e.g., LLaMA 3)       |
-| Docker           | Containerized deployment environment    |
-
+| Component             | Purpose                                        |
+|----------------------|------------------------------------------------|
+| Python               | Core programming language                      |
+| Gradio               | Web-based UI for interaction                   |
+| PyMuPDF (`fitz`)      | PDF parsing and text extraction                |
+| Sentence-Transformers | Embedding model for chunk/query vectors        |
+| ChromaDB             | Vector store for semantic retrieval            |
+| Ollama (Python SDK)  | Local LLM runtime and API for generation       |
+| Docker               | Containerization for consistent deployment     |
 ---
 
 ## Project Structure
@@ -61,7 +62,7 @@ docker run -p 7860:7860 \
   ```
 
 
- ## Architecture Diagram
+ ## Wokrflow Diagram
  [User] → [Gradio UI] → [PDF Parser] → [Text Chunking] → [ChromaDB Vector Store]
                                               ↓
                                   [Query Retrieval]
