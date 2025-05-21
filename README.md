@@ -49,7 +49,7 @@ cd enterprise-rag-chatbot
 
 ### 3. Build the Docker container
 ```bash
-ollama run llama3
+docker build -t enterprise-rag-chatbot .
 ```
 
 ###  Run the app
@@ -59,3 +59,55 @@ docker run -p 7860:7860 \
   -e OLLAMA_HOST=http://host.docker.internal:11434 \
   enterprise-rag-chatbot
   ```
+
+
+ ## Architecture Diagram
+ [User] → [Gradio UI] → [PDF Parser] → [Text Chunking] → [ChromaDB Vector Store]
+                                              ↓
+                                  [Query Retrieval]
+                                              ↓
+                                  [Ollama LLM (via prompt)]
+                                              ↓
+                                      [Answer to User]
+
+
+What is Retrieval-Augmented Generation (RAG)?
+---------------------------------------------
+
+RAG is a hybrid technique combining:
+
+*   **Retrieval**: fetching relevant context (text chunks from your document)
+    
+*   **Generation**: passing that context to a language model to generate an informed answer
+    
+
+This enables grounded, document-specific Q&A with better factual reliability.
+
+Example Use Cases
+-----------------
+
+*   Internal policy chatbots for HR or compliance
+    
+*   Private medical/legal document assistants
+    
+*   Secure offline LLM tools for enterprise
+    
+
+    
+
+Future Improvements
+-------------------
+
+*   Token-by-token streaming of answers
+    
+*   Support for multiple documents
+    
+*   Answer traceability (highlighting source chunks)
+    
+*   Chat export and analytics dashboard
+    
+
+Author
+------
+
+**Eby Thomas **
