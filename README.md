@@ -37,22 +37,25 @@ A local document-based chatbot that uses Retrieval-Augmented Generation (RAG) to
 
 ### 1. Install Ollama (once)
 Download from [https://ollama.com/download](https://ollama.com/download) and run a model:
-
 ```bash
 ollama run llama3
+```
 
-## 2. Clone and Run
-
+### 2. Clone and run
 ```bash
 git clone https://github.com/yourusername/enterprise-rag-chatbot.git
 cd enterprise-rag-chatbot
+```
 
-# Build the Docker container
-docker build -t enterprise-rag-chatbot .
+### 3. Build the Docker container
+```bash
+ollama run llama3
+```
 
-# Run the app
+###  Run the app
+```bash
 docker run -p 7860:7860 \
   -v $(pwd)/docs:/app/docs \
   -e OLLAMA_HOST=http://host.docker.internal:11434 \
   enterprise-rag-chatbot
-
+  ```
