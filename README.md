@@ -14,10 +14,7 @@ A local document-based chatbot that uses Retrieval-Augmented Generation (RAG) to
 - Clean Gradio interface
 - Fully containerized with Docker
 ---
-## Workflow Diagram
 
-![Upload workflow](images/workflow.png)
----
 ## Demo
 
 ### Initial  RAG Chatbot with all features
@@ -42,7 +39,28 @@ A local document-based chatbot that uses Retrieval-Augmented Generation (RAG) to
 ---
 
 ## Project Structure
+.
+├── app/
+│   ├── main.py                  # Entrypoint to launch the Gradio app
+│   ├── ollama_integration.py   # Handles communication with Ollama (local LLM)
+│   ├── rag_pipeline.py         # Responsible for PDF text extraction and chunking
+│   ├── ui_gradio.py            # Builds the Gradio interface using Blocks
+│   ├── vector_store.py         # Manages embedding generation and ChromaDB queries
+│   └── docs/                   # Folder to store uploaded PDF documents
+│       └── Leave-Policy.pdf    # Sample document for demo/testing
+│
+├── images/
+│   ├── Before_uploading.png    # Screenshot of the UI before a PDF is uploaded
+│   ├── Chat_bot_Response.png   # Screenshot showing a successful LLM response
+│   └── workflow.png            # Visual diagram of the RAG pipeline architecture
+│
+├── Dockerfile                  # Defines the container environment and setup
+├── README.md                   # Project overview, instructions, and documentation
+├── requirements.txt            # All Python dependencies for the app
+---
+## Workflow Diagram
 
+![Upload workflow](images/workflow.png)
 
 ---
 
