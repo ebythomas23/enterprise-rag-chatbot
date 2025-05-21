@@ -93,14 +93,6 @@ docker run -p 7860:7860 \
   ```
 
 
- ## Wokrflow Diagram
- [User] → [Gradio UI] → [PDF Parser] → [Text Chunking] → [ChromaDB Vector Store]
-                                              ↓
-                                  [Query Retrieval]
-                                              ↓
-                                  [Ollama LLM (via prompt)]
-                                              ↓
-                                      [Answer to User]
 
 
 What is Retrieval-Augmented Generation (RAG)?
