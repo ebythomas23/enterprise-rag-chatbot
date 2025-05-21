@@ -111,4 +111,4 @@ Future Improvements
 Author
 ------
 
-**Eby Thomas **
+Eby Thomas 
