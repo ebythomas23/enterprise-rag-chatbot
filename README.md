@@ -13,8 +13,20 @@ A local document-based chatbot that uses Retrieval-Augmented Generation (RAG) to
 - Local LLM-powered answer generation using Ollama
 - Clean Gradio interface
 - Fully containerized with Docker
+---
+## Workflow Diagram
+
 
 ---
+## Demo
+
+### Initial  RAG Chatbot with all features
+![Upload Screenshot](images/Before_uploading.png)
+
+### Response based on Question and PDF
+![Chat Screenshot](images/Chat_bot_Response.png)
+---
+
 
 ## Tech Stack
 
