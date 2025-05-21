@@ -1,7 +1,7 @@
 import ollama
 
 #combines user query and context to create a prompt ans send it to the llm , and returns the response
-def query_ollama(query,context, model_name="llama3.2:1b"):
+def query_ollama(query,context, model_name="llama3"):
   prompt=f"""
     Use the following contect to answer the question
 
