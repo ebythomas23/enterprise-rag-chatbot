@@ -16,7 +16,7 @@ A local document-based chatbot that uses Retrieval-Augmented Generation (RAG) to
 ---
 ## Workflow Diagram
 
-
+![Upload workflow](images/workflow.png)
 ---
 ## Demo
 
